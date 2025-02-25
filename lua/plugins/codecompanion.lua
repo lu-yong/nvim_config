@@ -8,7 +8,7 @@ return {
   },
   keys = {
     { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-    { "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
+    -- { "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
     { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
     { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "codecompanion: inline", mode = { "n", "v" } },
   },
@@ -22,7 +22,6 @@ return {
             env = {
               url = "https://dashscope.aliyuncs.com/compatible-mode", -- optional: default value is ollama url http://127.0.0.1:11434
               api_key = "DASHSCOPE_API_KEY", -- optional: if your endpoint is authenticated
-              --chat_url = "/v1/chat/completions", -- optional: default value, override if different
             },
             schema = {
               model = {

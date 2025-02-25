@@ -1,3 +1,3 @@
 return {
-  { "yetone/avante.nvim", enabled = false },
+  --{ "yetone/avante.nvim", enabled = true },
 }

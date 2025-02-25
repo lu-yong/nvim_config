@@ -5,12 +5,21 @@ return {
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
     provider = "qianwen",
+    -- provider = "gemini",
+    gemini = {
+      model = "gemini-2.0-flash",
+    },
+    -- behaviour = {
+    --   enable_cursor_planning_mode = true, -- enable cursor planning mode!
+    -- },
     vendors = {
       qianwen = {
         __inherited_from = "openai",
         api_key_name = "DASHSCOPE_API_KEY",
         endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        model = "qwen-coder-plus-latest",
+        -- model = "qwen-coder-plus-latest",
+        model = "qwen-max-latest",
+        -- model = "deepseek-v3",
       },
       deepseek = {
         __inherited_from = "openai",
@@ -18,10 +27,6 @@ return {
         endpoint = "https://api.deepseek.com",
         model = "deepseek-coder",
       },
-    },
-    -- provider = "gemini",
-    gemini = {
-      model = "gemini-2.0-flash",
     },
   },
   keys = {
@@ -35,11 +40,11 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "echasnovski/mini.pick", -- for file_selector provider mini.pick
-    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    -- "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    -- "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting
