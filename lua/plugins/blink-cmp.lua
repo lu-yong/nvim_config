@@ -22,8 +22,28 @@ return {
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
     -- See the full "keymap" documentation for information on defining your own keymap.
     keymap = {
-      ["<S-Tab>"] = { "select_prev", "fallback" },
-      ["<Tab>"] = { "select_next", "fallback" },
+      ["<S-Tab>"] = {
+        function(cmp)
+          if cmp.is_menu_visible() then
+            return
+          else
+            return cmp.snippet_backward()
+          end
+        end,
+        "select_prev",
+        "fallback",
+      },
+      ["<Tab>"] = {
+        function(cmp)
+          if cmp.is_menu_visible() then
+            return
+          else
+            return cmp.snippet_forward()
+          end
+        end,
+        "select_next",
+        "fallback",
+      },
     },
   },
 }

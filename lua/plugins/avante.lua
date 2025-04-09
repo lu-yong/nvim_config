@@ -4,7 +4,7 @@ return {
   lazy = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
-    provider = "openrouter",
+    provider = "silicon_deepseek",
     -- provider = "gemini",
     gemini = {
       model = "gemini-2.0-flash",
@@ -19,6 +19,7 @@ return {
         endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
         -- model = "qwen-coder-plus-latest",
         model = "qwen-max-latest",
+        max_tokens = 8192,
         -- model = "deepseek-v3",
       },
       openrouter = {
@@ -27,11 +28,12 @@ return {
         endpoint = "https://openrouter.ai/api/v1",
         model = "anthropic/claude-3.7-sonnet",
       },
-      deepseek = {
+      silicon_deepseek = {
         __inherited_from = "openai",
         api_key_name = "DEEPSEEK_API_KEY",
-        endpoint = "https://api.deepseek.com",
-        model = "deepseek-coder",
+        endpoint = "https://api.siliconflow.cn/v1",
+        model = "deepseek-ai/DeepSeek-V3",
+        max_tokens = 8192,
       },
     },
   },
@@ -51,7 +53,7 @@ return {
     -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    -- "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
