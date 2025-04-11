@@ -4,7 +4,7 @@ return {
   lazy = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
-    provider = "silicon_deepseek",
+    provider = "qianwen",
     -- provider = "gemini",
     gemini = {
       model = "gemini-2.0-flash",
@@ -30,7 +30,7 @@ return {
       },
       silicon_deepseek = {
         __inherited_from = "openai",
-        api_key_name = "DEEPSEEK_API_KEY",
+        api_key_name = "SILICONFLOW_API_KEY",
         endpoint = "https://api.siliconflow.cn/v1",
         model = "deepseek-ai/DeepSeek-V3",
         max_tokens = 8192,

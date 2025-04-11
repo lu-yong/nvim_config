@@ -44,6 +44,7 @@ return {
         "select_next",
         "fallback",
       },
+      ['<Esc>'] = { 'hide', 'fallback' },
     },
   },
 }
