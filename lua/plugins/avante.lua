@@ -4,7 +4,7 @@ return {
   lazy = false,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
-    provider = "qianwen",
+    provider = "copilot",
     -- provider = "gemini",
     gemini = {
       model = "gemini-2.0-flash",
@@ -17,7 +17,6 @@ return {
         __inherited_from = "openai",
         api_key_name = "DASHSCOPE_API_KEY",
         endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        -- model = "qwen-coder-plus-latest",
         model = "qwen-max-latest",
         max_tokens = 8192,
         -- model = "deepseek-v3",
@@ -36,6 +35,17 @@ return {
         max_tokens = 8192,
       },
     },
+    -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
+    system_prompt = function()
+      local hub = require("mcphub").get_hub_instance()
+      return hub:get_active_servers_prompt()
+    end,
+    -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
+    custom_tools = function()
+      return {
+        require("mcphub.extensions.avante").mcp_tool(),
+      }
+    end,
   },
   keys = {
     { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
@@ -53,11 +63,21 @@ return {
     -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+    "zbirenbaum/copilot.lua", -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
       event = "VeryLazy",
+      keys = {
+        {
+          "<leader>ip",
+          function()
+            return vim.bo.filetype == "AvanteInput" and require("avante.clipboard").paste_image()
+              or require("img-clip").paste_image()
+          end,
+          desc = "clip: paste image",
+        },
+      },
       opts = {
         -- recommended settings
         default = {

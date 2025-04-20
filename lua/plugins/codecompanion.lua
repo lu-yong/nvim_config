@@ -33,7 +33,7 @@ return {
         openrouter = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             name = "openrouter",
-            formatted_name = "Claude-3.7-Sonnet",
+            formatted_name = "Openrouter",
             env = {
               url = "https://openrouter.ai/api/v1", -- optional: default value is ollama url http://127.0.0.1:11434
               api_key = "OPENROUTER_API_KEY", -- optional: if your endpoint is authenticated
@@ -48,10 +48,10 @@ return {
         silicon_flow = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             name = "silicon_flow",
-            formatted_name = "DeepSeek",
+            formatted_name = "SiliconFlow",
             env = {
               url = "https://api.siliconflow.cn/", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = "DEEPSEEK_API_KEY", -- optional: if your endpoint is authenticated
+              api_key = "SILICONFLOW_API_KEY", -- optional: if your endpoint is authenticated
             },
             schema = {
               model = {
@@ -63,14 +63,45 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "qwen",
+          adapter = "silicon_flow",
         },
         inline = {
           adapter = "qwen",
+          keymaps = {
+            accept_change = {
+              modes = {
+                n = "<C-a>",
+              },
+              index = 1,
+              callback = "keymaps.accept_change",
+              description = "Accept change",
+            },
+            reject_change = {
+              modes = {
+                n = "<C-r>",
+              },
+              index = 2,
+              callback = "keymaps.reject_change",
+              description = "Reject change",
+            },
+          },
         },
         agent = {
           adapter = "qwen",
         },
+      },
+      display = {
+        chat = {
+          window = {
+            width = 0.4,
+          },
+        },
+        diff = {
+          close_chat_at = 10,
+        },
+      },
+      opts = {
+        log_level = "ERROR", -- log level for the plugin
       },
     })
   end,
