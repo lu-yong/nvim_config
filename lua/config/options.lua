@@ -4,3 +4,6 @@
 
 -- disable autoformat
 vim.g.autoformat = false
+
+-- prevent from unexpectedly changing the root
+vim.g.root_spec = { "cwd" }

@@ -1,10 +1,17 @@
 return {
   "olimorris/codecompanion.nvim",
+
+  init = function()
+    require("plugins.codecomanion-extension.companion-notification").init()
+  end,
+
   --config = true,
   lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "ravitemer/mcphub.nvim", -- for mcphub server
+    "folke/noice.nvim", -- for progress notifications
   },
   keys = {
     { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
@@ -15,6 +22,15 @@ return {
   config = function()
     require("codecompanion").setup({
       adapters = {
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            schema = {
+              model = {
+                default = "gemini-2.5-pro-exp-03-25",
+              },
+            },
+          })
+        end,
         qwen = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             name = "qwen",
@@ -63,10 +79,19 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "silicon_flow",
+          adapter = "gemini",
+          tools = {
+            ["mcp"] = {
+              -- calling it in a function would prevent mcphub from being loaded before it's needed
+              callback = function()
+                return require("mcphub.extensions.codecompanion")
+              end,
+              description = "Call tools and resources from the MCP Servers",
+            },
+          },
         },
         inline = {
-          adapter = "qwen",
+          adapter = "gemini",
           keymaps = {
             accept_change = {
               modes = {
@@ -87,13 +112,13 @@ return {
           },
         },
         agent = {
-          adapter = "qwen",
+          adapter = "gemoni",
         },
       },
       display = {
         chat = {
           window = {
-            width = 0.4,
+            width = 0.35,
           },
         },
         diff = {

@@ -16,20 +16,12 @@ return {
         avante = {
           make_slash_commands = true, -- make /slash commands from MCP server prompts
         },
-      },
-    })
-    require("avante").setup({
-      disabled_tools = {
-        "list_files", -- Built-in file operations
-        "search_files",
-        "read_file",
-        "create_file",
-        "rename_file",
-        "delete_file",
-        "create_dir",
-        "rename_dir",
-        "delete_dir",
-        "bash", -- Built-in terminal access
+        codecompanion = {
+            -- Show the mcp tool result in the chat buffer
+            show_result_in_chat = true,
+            make_vars = true, -- make chat #variables from MCP server resources
+            make_slash_commands = true, -- make /slash_commands from MCP server prompts
+        },
       },
     })
   end,

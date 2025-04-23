@@ -2,12 +2,15 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
-  version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  version = false, -- -- Never set this value to "*"! Never!
   opts = {
-    provider = "copilot",
-    -- provider = "gemini",
+    -- provider = "copilot",
+    provider = "gemini",
     gemini = {
-      model = "gemini-2.0-flash",
+      model = "gemini-2.5-pro-exp-03-25",
+    },
+    copilot = {
+      model = "claude-3.5-sonnet",
     },
     -- behaviour = {
     --   enable_cursor_planning_mode = true, -- enable cursor planning mode!
@@ -46,6 +49,18 @@ return {
         require("mcphub.extensions.avante").mcp_tool(),
       }
     end,
+    disabled_tools = {
+      "list_files", -- Built-in file operations
+      "search_files",
+      "read_file",
+      "create_file",
+      "rename_file",
+      "delete_file",
+      "create_dir",
+      "rename_dir",
+      "delete_dir",
+      "bash", -- Built-in terminal access
+    },
   },
   keys = {
     { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
@@ -58,26 +73,17 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    -- "echasnovski/mini.pick", -- for file_selector provider mini.pick
-    -- "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    -- "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
+    "ravitemer/mcphub.nvim", -- for mcphub server
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
       event = "VeryLazy",
-      keys = {
-        {
-          "<leader>ip",
-          function()
-            return vim.bo.filetype == "AvanteInput" and require("avante.clipboard").paste_image()
-              or require("img-clip").paste_image()
-          end,
-          desc = "clip: paste image",
-        },
-      },
       opts = {
         -- recommended settings
         default = {
