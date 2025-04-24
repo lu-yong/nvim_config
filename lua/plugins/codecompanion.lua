@@ -14,10 +14,12 @@ return {
     "folke/noice.nvim", -- for progress notifications
   },
   keys = {
-    { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-    -- { "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
-    -- { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
-    -- { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "codecompanion: inline", mode = { "n", "v" } },
+    { "<leader>A", "", desc = "+ai", mode = { "n", "v" } },
+    { "<leader>Aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
+    { "<leader>Ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
+    { "<leader>Ac", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add code to CodeCompanion" },
+    { "<leader>Ai", "<cmd>CodeCompanion<cr>", desc = "codecompanion: inline", mode = { "n", "v" } },
+    { "<leader>Ap", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Prompt Actions (CodeCompanion)" },
   },
   config = function()
     require("codecompanion").setup({
