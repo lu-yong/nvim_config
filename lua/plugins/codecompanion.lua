@@ -114,7 +114,7 @@ return {
           },
         },
         agent = {
-          adapter = "gemoni",
+          adapter = "gemini",
         },
       },
       display = {

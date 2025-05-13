@@ -20,9 +20,7 @@ return {
         __inherited_from = "openai",
         api_key_name = "DASHSCOPE_API_KEY",
         endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        model = "qwen-max-latest",
-        max_tokens = 8192,
-        -- model = "deepseek-v3",
+        model = "qwen-plus-latest",
       },
       openrouter = {
         __inherited_from = "openai",
@@ -35,7 +33,6 @@ return {
         api_key_name = "SILICONFLOW_API_KEY",
         endpoint = "https://api.siliconflow.cn/v1",
         model = "deepseek-ai/DeepSeek-V3",
-        max_tokens = 8192,
       },
     },
     -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
@@ -77,7 +74,7 @@ return {
     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "echasnovski/mini.icons", -- or nvim-tree/nvim-web-devicons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     "ravitemer/mcphub.nvim", -- for mcphub server
     {
