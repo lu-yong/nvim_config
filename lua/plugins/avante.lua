@@ -7,7 +7,7 @@ return {
     -- provider = "copilot",
     provider = "gemini",
     gemini = {
-      model = "gemini-2.5-pro-exp-03-25",
+      model = "gemini-2.5-flash-preview-04-17",
     },
     copilot = {
       model = "claude-3.5-sonnet",
@@ -97,10 +97,12 @@ return {
     {
       -- Make sure to set this up properly if you have lazy=true
       "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
+      ft = function(_, ft)
+        vim.list_extend(ft, { "Avante" })
+      end,
+      opts = function(_, opts)
+        opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })
+      end,
     },
   },
 }

@@ -12,14 +12,26 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim", -- for mcphub server
     "folke/noice.nvim", -- for progress notifications
+    "ravitemer/codecompanion-history.nvim", -- for history
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      "MeanderingProgrammer/render-markdown.nvim",
+      ft = function(_, ft)
+        vim.list_extend(ft, { "codecompanion" })
+      end,
+      opts = function(_, opts)
+        opts.file_types = vim.list_extend(opts.file_types or {}, { "codecompanion" })
+      end,
+    },
   },
   keys = {
     { "<leader>A", "", desc = "+ai", mode = { "n", "v" } },
     { "<leader>Aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
     { "<leader>Ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
-    { "<leader>Ac", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add code to CodeCompanion" },
+    { "<leader>Ac", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = "v" },
+    { "<leader>Ah", "<cmd>CodeCompanionHistory<cr>", desc = "codecompanion: history", mode = { "n", "v" } },
     { "<leader>Ai", "<cmd>CodeCompanion<cr>", desc = "codecompanion: inline", mode = { "n", "v" } },
-    { "<leader>Ap", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "Prompt Actions (CodeCompanion)" },
+    { "<leader>Ap", "<cmd>CodeCompanionActions<cr>", desc = "codecompanion: prompt action", mode = { "n", "v" } },
   },
   config = function()
     require("codecompanion").setup({
@@ -28,7 +40,7 @@ return {
           return require("codecompanion.adapters").extend("gemini", {
             schema = {
               model = {
-                default = "gemini-2.5-pro-exp-03-25",
+                default = "gemini-2.5-flash-preview-04-17",
               },
             },
           })
@@ -43,7 +55,7 @@ return {
             },
             schema = {
               model = {
-                default = "qwen-max-latest", -- define llm model to be used
+                default = "qwen-plus-latest", -- define llm model to be used
               },
             },
           })
@@ -79,18 +91,28 @@ return {
           })
         end,
       },
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+        history = {
+          enabled = true,
+          opts = {
+            -- Picker interface ("telescope" or "snacks" or "fzf-lua" or "default")
+            picker = "snacks",
+            ---Directory path to save the chats
+            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+          },
+        },
+      },
       strategies = {
         chat = {
           adapter = "gemini",
-          tools = {
-            ["mcp"] = {
-              -- calling it in a function would prevent mcphub from being loaded before it's needed
-              callback = function()
-                return require("mcphub.extensions.codecompanion")
-              end,
-              description = "Call tools and resources from the MCP Servers",
-            },
-          },
         },
         inline = {
           adapter = "gemini",

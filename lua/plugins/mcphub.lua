@@ -3,6 +3,12 @@ return {
   "ravitemer/mcphub.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    {
+      "nvim-lualine/lualine.nvim",
+      opts = function(_, opts)
+        table.insert(opts.sections.lualine_x, 2, require("mcphub.extensions.lualine"))
+      end,
+    },
   },
   -- comment the following line to ensure hub will be ready at the earliest
   cmd = "MCPHub", -- lazy load by default
@@ -15,12 +21,6 @@ return {
       extensions = {
         avante = {
           make_slash_commands = true, -- make /slash commands from MCP server prompts
-        },
-        codecompanion = {
-            -- Show the mcp tool result in the chat buffer
-            show_result_in_chat = true,
-            make_vars = true, -- make chat #variables from MCP server resources
-            make_slash_commands = true, -- make /slash_commands from MCP server prompts
         },
       },
     })
