@@ -6,6 +6,7 @@ return {
   opts = {
     -- provider = "copilot",
     provider = "gemini",
+    auto_suggestions_provider = "siliconflow",
     gemini = {
       model = "gemini-2.5-flash-preview-04-17",
     },
@@ -27,18 +28,36 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         endpoint = "https://openrouter.ai/api/v1",
         model = "anthropic/claude-3.7-sonnet",
+        disabled_tools = { "python" },
       },
-      silicon_deepseek = {
+      siliconflow = {
         __inherited_from = "openai",
         api_key_name = "SILICONFLOW_API_KEY",
         endpoint = "https://api.siliconflow.cn/v1",
         model = "deepseek-ai/DeepSeek-V3",
       },
     },
+    windows = {
+      width = 35,
+      ask = {
+        start_insert = false,
+      },
+    },
+    mappings = {
+      stop = "<leader>as",
+      toggle = {
+        suggestion = "<leader>aS",
+      },
+      sidebar = {
+        close_from_input = {
+          normal = "q",
+        },
+      },
+    },
     -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
     system_prompt = function()
       local hub = require("mcphub").get_hub_instance()
-      return hub:get_active_servers_prompt()
+      return hub and hub:get_active_servers_prompt() or ""
     end,
     -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
     custom_tools = function()
