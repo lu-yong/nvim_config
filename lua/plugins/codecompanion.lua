@@ -124,11 +124,6 @@ return {
               i = "<C-c>",
             },
           },
-          yank_code = {
-            modes = {
-              n = "<C-y>",
-            },
-          },
           regenerate = {
             modes = {
               n = "<C-r>",
