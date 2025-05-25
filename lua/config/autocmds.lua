@@ -6,3 +6,52 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+
+-- 1. 定义你的宏操作字符串。
+-- 这是一个 good practice，将复杂的 rhs 字符串抽离出来，方便管理和复用。
+-- local add_comment_above_rhs = "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>"
+-- local add_comment_below_rhs = "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>"
+
+-- 2. 创建一个 autocommand group 来管理你的条件键映射
+-- local comment_keymap_group = vim.api.nvim_create_augroup("CommentKeymapConditions", { clear = true })
+
+-- 3. 在 BufEnter 事件中，根据 filetype 动态设置或移除局部映射
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--     group = comment_keymap_group,
+--     -- pattern = "*", -- 监听所有文件类型的缓冲区进入事件
+--     -- 或者更精确地指定你通常需要注释的文件类型，可以减少不必要的触发
+--     pattern = { "*.lua", "*.py", "*.js", "*.ts", "*.c", "*.cpp", "*.go", "*.java", "*.json", "*.yaml", "*.yml", "*.sh", "*.zsh" },
+--     callback = function()
+--         local bufnr = vim.api.nvim_get_current_buf()
+--
+--         -- 使用新的 API 获取缓冲区选项，适配 Neovim 0.11.1
+--         local filetype = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
+--
+--         -- 检查 filetype 是否包含 'codecompanion'
+--         local contains_codecompanion = string.find(filetype, "codecompanion", 1, true)
+--
+--         if not contains_codecompanion then
+--             -- 如果 filetype 不包含 'codecompanion'，则设置缓冲区局部映射
+--             vim.keymap.set("n", "gcO", add_comment_above_rhs, {
+--                 buffer = bufnr,  -- 关键：设置为缓冲区局部
+--                 silent = true,   -- 静默执行，不显示命令
+--                 desc = "Add Comment Above"
+--             })
+--             vim.keymap.set("n", "gco", add_comment_below_rhs, {
+--                 buffer = bufnr,  -- 关键：设置为缓冲区局部
+--                 silent = true,
+--                 desc = "Add Comment Below"
+--             })
+--             -- Uncomment for debugging
+--             -- print("已为此缓冲区设置 'gcO' 和 'gco' 快捷键 (filetype: " .. filetype .. ")")
+--         else
+--             -- 如果 filetype 包含 'codecompanion'，则移除可能的缓冲区局部映射
+--             -- pcall 用于安全地调用，即使映射不存在也不会报错
+--             pcall(vim.api.nvim_del_keymap, 'n', 'gcO', { buffer = bufnr })
+--             pcall(vim.api.nvim_del_keymap, 'n', 'gco', { buffer = bufnr })
+--             -- Uncomment for debugging
+--             -- print("已为此缓冲区移除 'gcO' 和 'gco' 快捷键 (filetype: " .. filetype .. ")")
+--         end
+--     end,
+-- })

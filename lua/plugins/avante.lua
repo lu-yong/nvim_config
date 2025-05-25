@@ -1,14 +1,14 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  lazy = false,
+  lazy = true,
   version = false, -- -- Never set this value to "*"! Never!
   opts = {
     -- provider = "copilot",
     provider = "gemini",
     auto_suggestions_provider = "siliconflow",
     gemini = {
-      model = "gemini-2.5-flash-preview-04-17",
+      model = "gemini-2.5-flash-preview-05-20",
     },
     copilot = {
       model = "claude-3.5-sonnet",
@@ -27,14 +27,14 @@ return {
         __inherited_from = "openai",
         api_key_name = "OPENROUTER_API_KEY",
         endpoint = "https://openrouter.ai/api/v1",
-        model = "anthropic/claude-3.7-sonnet",
+        model = "anthropic/claude-sonnet-4",
         disabled_tools = { "python" },
       },
       siliconflow = {
         __inherited_from = "openai",
         api_key_name = "SILICONFLOW_API_KEY",
         endpoint = "https://api.siliconflow.cn/v1",
-        model = "deepseek-ai/DeepSeek-V3",
+        model = "deepseek-ai/DeepSeek-R1",
       },
     },
     windows = {
@@ -79,7 +79,7 @@ return {
     },
   },
   keys = {
-    { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+    { "<leader>a", "", desc = "+ai(Avante)", mode = { "n", "v" } },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",

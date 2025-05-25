@@ -5,8 +5,7 @@ return {
     require("plugins.codecomanion-extension.companion-notification").init()
   end,
 
-  --config = true,
-  lazy = false,
+  lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -25,12 +24,12 @@ return {
     },
   },
   keys = {
-    { "<leader>A", "", desc = "+ai", mode = { "n", "v" } },
+    { "<leader>A", "", desc = "+ai(CodeCompanion)", mode = { "n", "v" } },
     { "<leader>Aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
-    { "<leader>Ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
     { "<leader>Ac", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = "v" },
-    { "<leader>Ah", "<cmd>CodeCompanionHistory<cr>", desc = "codecompanion: history", mode = { "n", "v" } },
     { "<leader>Ai", "<cmd>CodeCompanion<cr>", desc = "codecompanion: inline", mode = { "n", "v" } },
+    { "<leader>Ah", "<cmd>CodeCompanionHistory<cr>", desc = "codecompanion: history", mode = { "n", "v" } },
+    { "<leader>At", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
     { "<leader>Ap", "<cmd>CodeCompanionActions<cr>", desc = "codecompanion: prompt action", mode = { "n", "v" } },
   },
   opts = {
@@ -39,7 +38,7 @@ return {
         return require("codecompanion.adapters").extend("gemini", {
           schema = {
             model = {
-              default = "gemini-2.5-flash-preview-04-17",
+              default = "gemini-2.5-flash-preview-05-20",
             },
           },
         })
@@ -64,12 +63,12 @@ return {
           name = "openrouter",
           formatted_name = "Openrouter",
           env = {
-            url = "https://openrouter.ai/api/v1", -- optional: default value is ollama url http://127.0.0.1:11434
+            url = "https://openrouter.ai/api/", -- optional: default value is ollama url http://127.0.0.1:11434
             api_key = "OPENROUTER_API_KEY", -- optional: if your endpoint is authenticated
           },
           schema = {
             model = {
-              default = "anthropic/claude-3.7-sonnet", -- define llm model to be used
+              default = "anthropic/claude-sonnet-4", -- define llm model to be used
             },
           },
         })
@@ -84,7 +83,7 @@ return {
           },
           schema = {
             model = {
-              default = "deepseek-ai/DeepSeek-V3", -- define llm model to be used
+              default = "deepseek-ai/DeepSeek-R1", -- define llm model to be used
             },
           },
         })
@@ -116,14 +115,28 @@ return {
           close = {
             modes = {
               n = "q",
-              --- disable in insert mode
-              i = {},
+              i = "<C-q>",
             },
           },
           stop = {
             modes = {
               n = "<C-c>",
               i = "<C-c>",
+            },
+          },
+          yank_code = {
+            modes = {
+              n = "<C-y>",
+            },
+          },
+          regenerate = {
+            modes = {
+              n = "<C-r>",
+            },
+          },
+          codeblock = {
+            modes = {
+              n = "<C-b>",
             },
           },
         },
