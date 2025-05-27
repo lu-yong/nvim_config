@@ -4,14 +4,14 @@ return {
   lazy = true,
   version = false, -- -- Never set this value to "*"! Never!
   opts = {
-    -- provider = "copilot",
-    provider = "gemini",
+    provider = "copilot",
+    -- provider = "gemini",
     auto_suggestions_provider = "siliconflow",
     gemini = {
       model = "gemini-2.5-flash-preview-05-20",
     },
     copilot = {
-      model = "claude-3.5-sonnet",
+      model = "claude-sonnet-4",
     },
     -- behaviour = {
     --   enable_cursor_planning_mode = true, -- enable cursor planning mode!

@@ -34,6 +34,15 @@ return {
   },
   opts = {
     adapters = {
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {
+          schema = {
+            model = {
+              default = "claude-sonnet-4",
+            },
+          },
+        })
+      end,
       gemini = function()
         return require("codecompanion.adapters").extend("gemini", {
           schema = {
@@ -110,7 +119,7 @@ return {
     },
     strategies = {
       chat = {
-        adapter = "gemini",
+        adapter = "copilot",
         keymaps = {
           close = {
             modes = {
@@ -137,7 +146,7 @@ return {
         },
       },
       inline = {
-        adapter = "gemini",
+        adapter = "copilot",
         keymaps = {
           accept_change = {
             modes = {
@@ -158,7 +167,7 @@ return {
         },
       },
       agent = {
-        adapter = "gemini",
+        adapter = "copilot",
       },
     },
     display = {
