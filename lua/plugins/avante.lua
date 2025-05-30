@@ -13,9 +13,6 @@ return {
     copilot = {
       model = "claude-sonnet-4",
     },
-    -- behaviour = {
-    --   enable_cursor_planning_mode = true, -- enable cursor planning mode!
-    -- },
     vendors = {
       qianwen = {
         __inherited_from = "openai",
