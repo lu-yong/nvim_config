@@ -23,4 +23,7 @@ return {
       },
     },
   },
+  keys = {
+    { "<leader>m", "<cmd>MCPHub<cr>", desc = "Open MCPHub", mode = { "n", "v" } },
+  },
 }

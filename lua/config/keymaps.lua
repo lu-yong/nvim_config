@@ -2,8 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.set("n", "<leader>m", vim.cmd.MCPHub, { desc = "Open MCPHub" })
-
 -- prevent from yanking into the system clipboard
 vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "c", '"_c', { noremap = true, silent = true })
