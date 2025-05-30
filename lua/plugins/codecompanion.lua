@@ -5,7 +5,7 @@ return {
     require("plugins.codecomanion-extension.companion-notification").init()
   end,
 
-  lazy = true,
+  lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
