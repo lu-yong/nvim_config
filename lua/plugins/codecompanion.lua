@@ -1,3 +1,5 @@
+local PROMPTS = require("plugins.codecomanion-extension.prompts")
+
 return {
   "olimorris/codecompanion.nvim",
 
@@ -5,7 +7,8 @@ return {
     require("plugins.codecomanion-extension.companion-notification").init()
   end,
 
-  lazy = false,
+  event = "VeryLazy",
+  lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -22,6 +25,18 @@ return {
         opts.file_types = vim.list_extend(opts.file_types or {}, { "codecompanion" })
       end,
     },
+    {
+      "HakonHarnes/img-clip.nvim",
+      opts = {
+        filetypes = {
+          codecompanion = {
+            prompt_for_file_name = false,
+            template = "[Image]($FILE_PATH)",
+            use_absolute_path = true,
+          },
+        },
+      },
+    },
   },
   keys = {
     { "<leader>A", "", desc = "+ai(CodeCompanion)", mode = { "n", "v" } },
@@ -31,6 +46,14 @@ return {
     { "<leader>Ah", "<cmd>CodeCompanionHistory<cr>", desc = "codecompanion: history", mode = { "n", "v" } },
     { "<leader>At", "<cmd>CodeCompanionChat Toggle<cr>", desc = "codecompanion: chat", mode = { "n", "v" } },
     { "<leader>Ap", "<cmd>CodeCompanionActions<cr>", desc = "codecompanion: prompt action", mode = { "n", "v" } },
+    { "<leader>Ae", "<cmd>CodeCompanion /explain<cr>", desc = "codeompanion: explain code", mode = "v" },
+    { "<leader>Af", "<cmd>CodeCompanion /fix<cr>", desc = "codeompanion: fix code", mode = "v" },
+    { "<leader>Al", "<cmd>CodeCompanion /lsp<cr>", desc = "codeompanion: explain lsp diagnostic", mode = "v" },
+    { "<leader>Ad", "<cmd>CodeCompanion /inline-doc<cr>", desc = "codeompanion: inline document code", mode = "v" },
+    { "<leader>AD", "<cmd>CodeCompanion /doc<cr>", desc = "codeompanion: document code", mode = "v" },
+    { "<leader>Ar", "<cmd>CodeCompanion /refactor<cr>", desc = "codeompanion: refactor code", mode = "v" },
+    { "<leader>AR", "<cmd>CodeCompanion /review<cr>", desc = "codeompanion: review code", mode = "v" },
+    { "<leader>An", "<cmd>CodeCompanion /naming<cr>", desc = "codeompanion: better naming", mode = "v" },
   },
   opts = {
     adapters = {
@@ -111,8 +134,9 @@ return {
         enabled = true,
         opts = {
           -- Picker interface ("telescope" or "snacks" or "fzf-lua" or "default")
-          picker = "default",
+          picker = "snacks",
           ---Directory path to save the chats
+          expiration_days = 14,
           dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
         },
       },
@@ -183,5 +207,6 @@ return {
     opts = {
       log_level = "ERROR", -- log level for the plugin
     },
+    prompt_library = PROMPTS.PROMPT_LIBRARY,
   },
 }
