@@ -7,13 +7,13 @@ return {
     provider = "copilot",
     -- provider = "gemini",
     auto_suggestions_provider = "siliconflow",
-    gemini = {
-      model = "gemini-2.5-flash-preview-05-20",
-    },
-    copilot = {
-      model = "claude-sonnet-4",
-    },
-    vendors = {
+    providers = {
+      gemini = {
+        model = "gemini-2.5-flash-preview-05-20",
+      },
+      copilot = {
+        model = "claude-sonnet-4",
+      },
       qianwen = {
         __inherited_from = "openai",
         api_key_name = "DASHSCOPE_API_KEY",
@@ -25,7 +25,6 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         endpoint = "https://openrouter.ai/api/v1",
         model = "anthropic/claude-sonnet-4",
-        disabled_tools = { "python" },
       },
       siliconflow = {
         __inherited_from = "openai",
