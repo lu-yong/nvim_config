@@ -9,6 +9,7 @@ return {
 
   event = "VeryLazy",
   lazy = true,
+  version = "*",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
