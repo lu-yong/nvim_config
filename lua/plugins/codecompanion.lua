@@ -38,6 +38,11 @@ return {
         },
       },
     },
+    {
+      "Davidyz/VectorCode",
+      version = "*", -- optional, depending on whether you're on nightly or release
+      build = "uv tool upgrade vectorcode",
+    },
   },
   keys = {
     { "<leader>A", "", desc = "+ai(CodeCompanion)", mode = { "n", "v" } },
@@ -141,10 +146,40 @@ return {
           dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
         },
       },
+      vectorcode = {
+        opts = {
+          add_tool = true,
+          add_slash_command = true,
+          tool_opts = {
+            max_num = { chunk = -1, document = -1 },
+            default_num = { chunk = 50, document = 10 },
+            include_stderr = false,
+            use_lsp = false,
+            auto_submit = { ls = false, query = false },
+            ls_on_start = false,
+            no_duplicate = true,
+            chunk_mode = false,
+          },
+        },
+      },
     },
     strategies = {
       chat = {
         adapter = "copilot",
+        roles = {
+          llm = function(adapter)
+            local model_name = ""
+            if adapter.schema and adapter.schema.model and adapter.schema.model.default then
+              local model = adapter.schema.model.default
+              if type(model) == "function" then
+                model = model(adapter)
+              end
+              model_name = "(" .. model .. ")"
+            end
+            return "  " .. adapter.formatted_name .. model_name
+          end,
+          user = " User",
+        },
         keymaps = {
           close = {
             modes = {
