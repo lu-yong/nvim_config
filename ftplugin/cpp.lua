@@ -1,5 +1,5 @@
-local opt = vim.opt
+local bo = vim.bo
 -- 缩进
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.autoindent = true
+bo.tabstop = 4
+bo.shiftwidth = 4
+bo.autoindent = true
