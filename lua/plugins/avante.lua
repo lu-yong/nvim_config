@@ -4,15 +4,15 @@ return {
   lazy = true,
   version = false, -- -- Never set this value to "*"! Never!
   opts = {
-    provider = "copilot",
-    -- provider = "gemini",
+    -- provider = "copilot",
+    provider = "gemini",
     auto_suggestions_provider = "siliconflow",
     providers = {
       gemini = {
-        model = "gemini-2.5-flash-preview-05-20",
+        model = "gemini-2.5-flash",
       },
       copilot = {
-        model = "claude-sonnet-4",
+        model = "claude-3.5-sonnet",
       },
       qianwen = {
         __inherited_from = "openai",
@@ -62,15 +62,11 @@ return {
       }
     end,
     disabled_tools = {
-      "list_files", -- Built-in file operations
-      "search_files",
       "read_file",
       "create_file",
-      "rename_file",
-      "delete_file",
+      "move_path",
+      "delete_path",
       "create_dir",
-      "rename_dir",
-      "delete_dir",
       "bash", -- Built-in terminal access
     },
   },

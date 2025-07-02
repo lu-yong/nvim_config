@@ -62,7 +62,7 @@ return {
         return require("codecompanion.adapters").extend("copilot", {
           schema = {
             model = {
-              default = "claude-sonnet-4",
+              default = "claude-3.5-sonnet",
             },
           },
         })
@@ -71,7 +71,7 @@ return {
         return require("codecompanion.adapters").extend("gemini", {
           schema = {
             model = {
-              default = "gemini-2.5-flash-preview-05-20",
+              default = "gemini-2.5-flash",
             },
           },
         })
