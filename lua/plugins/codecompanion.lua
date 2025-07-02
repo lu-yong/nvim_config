@@ -38,11 +38,6 @@ return {
         },
       },
     },
-    {
-      "Davidyz/VectorCode",
-      version = "*", -- optional, depending on whether you're on nightly or release
-      build = "uv tool upgrade vectorcode",
-    },
   },
   keys = {
     { "<leader>A", "", desc = "+ai(CodeCompanion)", mode = { "n", "v" } },
@@ -144,22 +139,6 @@ return {
           ---Directory path to save the chats
           expiration_days = 14,
           dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
-        },
-      },
-      vectorcode = {
-        opts = {
-          add_tool = true,
-          add_slash_command = true,
-          tool_opts = {
-            max_num = { chunk = -1, document = -1 },
-            default_num = { chunk = 50, document = 10 },
-            include_stderr = false,
-            use_lsp = false,
-            auto_submit = { ls = false, query = false },
-            ls_on_start = false,
-            no_duplicate = true,
-            chunk_mode = false,
-          },
         },
       },
     },
