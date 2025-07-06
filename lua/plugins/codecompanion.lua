@@ -77,15 +77,6 @@ return {
           },
         })
       end,
-      gemini = function()
-        return require("codecompanion.adapters").extend("gemini", {
-          schema = {
-            model = {
-              default = "gemini-2.5-flash",
-            },
-          },
-        })
-      end,
       qwen = function()
         return require("codecompanion.adapters").extend("openai_compatible", {
           name = "qwen",
@@ -180,11 +171,6 @@ return {
             modes = {
               n = "<C-c>",
               i = "<C-c>",
-            },
-          },
-          regenerate = {
-            modes = {
-              n = "<C-r>",
             },
           },
           codeblock = {
