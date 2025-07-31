@@ -63,7 +63,7 @@ return {
 
           local status = vim.g.mcphub_status or "stopped"
           if status == "ready" or status == "restarted" then
-            return { fg = "#0db9d7" } -- Blue for connected
+            return { fg = "#50fa7b" } -- Green for connected
           elseif status == "starting" or status == "restarting" then
             return { fg = "#ffb86c" } -- Orange for connecting
           else
