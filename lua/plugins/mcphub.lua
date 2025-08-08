@@ -1,7 +1,7 @@
 return {
   {
     lazy = true,
-    version = false,
+    version = "*",
     "ravitemer/mcphub.nvim",
     -- comment the following line to ensure hub will be ready at the earliest
     cmd = "MCPHub", -- lazy load by default
