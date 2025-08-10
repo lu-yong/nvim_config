@@ -72,7 +72,7 @@ return {
       },
     },
     keys = {
-      { "<leader>a", "", desc = "+ai(Avante)", mode = { "n", "v" } },
+      { "<leader>a", "", desc = "ai(Avante)", mode = { "n", "v" } },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = function()

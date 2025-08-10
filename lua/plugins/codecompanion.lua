@@ -2,6 +2,14 @@ local PROMPTS = require("plugins.codecomanion-extension.prompts")
 
 return {
   {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>A", group = "ai(CodeCompanion)", icon = " " },
+      },
+    },
+  },
+  {
     "olimorris/codecompanion.nvim",
 
     init = function()
@@ -15,7 +23,6 @@ return {
       "ravitemer/codecompanion-history.nvim", -- for history
     },
     keys = {
-      { "<leader>A", "", desc = "+ai(CodeCompanion)", mode = { "n", "v" } },
       { "<leader>Aa", "<cmd>CodeCompanionChat Add<cr>", desc = "codecompanion: add", mode = { "n", "v" } },
       { "<leader>Ai", "<cmd>CodeCompanion<cr>", desc = "codecompanion: inline", mode = { "n", "v" } },
       { "<leader>Ah", "<cmd>CodeCompanionHistory<cr>", desc = "codecompanion: history", mode = { "n", "v" } },

@@ -1,5 +1,13 @@
 return {
   {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>m", group = "Open MCPHub", icon = "󰐻 " },
+      },
+    },
+  },
+  {
     lazy = true,
     version = "*",
     "ravitemer/mcphub.nvim",
