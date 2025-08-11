@@ -5,7 +5,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>A", group = "ai(CodeCompanion)", icon = " " },
+        { "<leader>A", group = "ai(CodeCompanion)", icon = " ", mode = { "n", "v" } },
       },
     },
   },
