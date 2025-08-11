@@ -75,15 +75,9 @@ return {
       { "<leader>a", "", desc = "ai(Avante)", mode = { "n", "v" } },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = function()
-      -- conditionally use the correct build system for the current OS
-      if vim.fn.has("win32") == 1 then
-        return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-      else
-        return "make"
-      end
-    end,
-   },
+    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
+  },
   {
     "nvim-lua/plenary.nvim",
     lazy = true,
