@@ -217,17 +217,6 @@ return {
     lazy = true,
   },
   {
-    "echasnovski/mini.diff",
-    lazy = true,
-    config = function()
-      local diff = require("mini.diff")
-      diff.setup({
-        -- Disabled by default
-        source = diff.gen_source.none(),
-      })
-    end,
-  },
-  {
     "HakonHarnes/img-clip.nvim",
     event = "VeryLazy",
     lazy = true,
