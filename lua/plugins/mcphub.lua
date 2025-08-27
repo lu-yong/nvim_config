@@ -3,7 +3,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>m", group = "Open MCPHub", icon = "󰐻 " },
+        { "<leader>m", group = "Open MCPHub", icon = "󰐻 ", mode = { "n", "v" } },
       },
     },
   },
