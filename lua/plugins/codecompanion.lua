@@ -49,12 +49,12 @@ return {
           })
         end,
         qwen = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
+          return require("codecompanion.adapters").extend("openai", {
             name = "qwen",
             formatted_name = "Qwen",
+            url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
             env = {
-              url = "https://dashscope.aliyuncs.com/compatible-mode", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = "DASHSCOPE_API_KEY", -- optional: if your endpoint is authenticated
+              api_key = "DASHSCOPE_API_KEY",
             },
             schema = {
               model = {
@@ -64,12 +64,12 @@ return {
           })
         end,
         openrouter = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
+          return require("codecompanion.adapters").extend("openai", {
             name = "openrouter",
             formatted_name = "Openrouter",
+            url = "https://openrouter.ai/api/v1/chat/completions",
             env = {
-              url = "https://openrouter.ai/api/", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = "OPENROUTER_API_KEY", -- optional: if your endpoint is authenticated
+              api_key = "OPENROUTER_API_KEY",
             },
             schema = {
               model = {
@@ -79,12 +79,12 @@ return {
           })
         end,
         silicon_flow = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
+          return require("codecompanion.adapters").extend("openai", {
             name = "silicon_flow",
             formatted_name = "SiliconFlow",
+            url = "https://api.siliconflow.cn/v1/chat/completions",
             env = {
-              url = "https://api.siliconflow.cn/", -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = "SILICONFLOW_API_KEY", -- optional: if your endpoint is authenticated
+              api_key = "SILICONFLOW_API_KEY",
             },
             schema = {
               model = {
