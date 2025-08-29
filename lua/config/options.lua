@@ -4,6 +4,8 @@
 
 -- disable autoformat
 vim.g.autoformat = false
+-- disable mini pairs
+vim.g.minipairs_disable = true
 
 -- prevent from unexpectedly changing the root
 vim.g.root_spec = { "cwd" }
