@@ -15,11 +15,11 @@ return {
         copilot = {
           model = "claude-3.5-sonnet",
         },
-        qianwen = {
+        qwen = {
           __inherited_from = "openai",
           api_key_name = "DASHSCOPE_API_KEY",
           endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-          model = "qwen3-coder-plus",
+          model = "qwen3-coder-480b-a35b-instruct",
         },
         openrouter = {
           __inherited_from = "openai",
@@ -33,6 +33,9 @@ return {
           endpoint = "https://api.siliconflow.cn/v1",
           model = "deepseek-ai/DeepSeek-R1",
         },
+      },
+      behaviour = {
+        auto_approve_tool_permissions = false,
       },
       windows = {
         width = 35,
