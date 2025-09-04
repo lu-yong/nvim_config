@@ -48,10 +48,16 @@ return {
         toggle = {
           suggestion = "<leader>aS",
         },
+        jump = {
+          next = "]j",
+          prev = "[j",
+        },
         sidebar = {
           close_from_input = {
             normal = "q",
           },
+          prev_prompt = "[[",
+          next_prompt = "]]",
         },
       },
       -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
