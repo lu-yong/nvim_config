@@ -15,12 +15,6 @@ return {
         copilot = {
           model = "claude-3.5-sonnet",
         },
-        qwen = {
-          __inherited_from = "openai",
-          api_key_name = "DASHSCOPE_API_KEY",
-          endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-          model = "qwen3-coder-480b-a35b-instruct",
-        },
         openrouter = {
           __inherited_from = "openai",
           api_key_name = "OPENROUTER_API_KEY",
