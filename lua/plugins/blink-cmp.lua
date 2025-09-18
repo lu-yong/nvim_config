@@ -8,41 +8,51 @@ return {
     lazy = true,
     -- make sure to set opts so that lazy.nvim calls blink.compat's setup
     opts = {},
-    config = function()
-      -- monkeypatch cmp.ConfirmBehavior for Avante
-      require("cmp").ConfirmBehavior = {
-        Insert = "insert",
-        Replace = "replace",
-      }
-    end,
+    -- config = function()
+    --   -- monkeypatch cmp.ConfirmBehavior for Avante
+    --   require("cmp").ConfirmBehavior = {
+    --     Insert = "insert",
+    --     Replace = "replace",
+    --   }
+    -- end,
+  },
+  {
+    'Kaiser-Yang/blink-cmp-avante',
   },
   {
     "saghen/blink.cmp",
     opts = {
       sources = {
-        default = { "avante_commands", "avante_mentions", "avante_files" },
-        compat = { "avante_commands", "avante_mentions", "avante_files" },
-        -- LSP score_offset is typically 60
+        default = { "avante" },
         providers = {
-          avante_commands = {
-            name = "avante_commands",
-            module = "blink.compat.source",
-            score_offset = 90,
-            opts = {},
-          },
-          avante_files = {
-            name = "avante_files",
-            module = "blink.compat.source",
-            score_offset = 100,
-            opts = {},
-          },
-          avante_mentions = {
-            name = "avante_mentions",
-            module = "blink.compat.source",
-            score_offset = 1000,
-            opts = {},
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
           },
         },
+        --   default = { "avante_commands", "avante_mentions", "avante_files" },
+        --   compat = { "avante_commands", "avante_mentions", "avante_files" },
+        --   -- LSP score_offset is typically 60
+        --   providers = {
+        --     avante_commands = {
+        --       name = "avante_commands",
+        --       module = "blink.compat.source",
+        --       score_offset = 90,
+        --       opts = {},
+        --     },
+        --     avante_files = {
+        --       name = "avante_files",
+        --       module = "blink.compat.source",
+        --       score_offset = 100,
+        --       opts = {},
+        --     },
+        --     avante_mentions = {
+        --       name = "avante_mentions",
+        --       module = "blink.compat.source",
+        --       score_offset = 1000,
+        --       opts = {},
+        --     },
+        --   },
       },
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
