@@ -1,20 +1,8 @@
 return {
   {
     "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    version = false, -- -- Never set this value to "*"! Never!
     opts = {
-      -- provider = "copilot",
-      provider = "gemini",
-      auto_suggestions_provider = "siliconflow",
       providers = {
-        gemini = {
-          model = "gemini-2.5-flash",
-        },
-        copilot = {
-          model = "claude-3.5-sonnet",
-        },
         openrouter = {
           __inherited_from = "openai",
           api_key_name = "OPENROUTER_API_KEY",
@@ -38,10 +26,6 @@ return {
         },
       },
       mappings = {
-        stop = "<leader>as",
-        toggle = {
-          suggestion = "<leader>aS",
-        },
         jump = {
           next = "]j",
           prev = "[j",
@@ -52,6 +36,10 @@ return {
           },
           prev_prompt = "[[",
           next_prompt = "]]",
+        },
+        files = {
+          add_current = "<leader>vc", -- Add current buffer to selected files
+          add_all_buffers = "<leader>vB", -- Add all buffer files to selected files
         },
       },
       -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
@@ -74,50 +62,24 @@ return {
         "bash", -- Built-in terminal access
       },
     },
-    keys = {
-      { "<leader>a", "", desc = "ai(Avante)", mode = { "n", "v" } },
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-      or "make",
-  },
-  {
-    "nvim-lua/plenary.nvim",
-    lazy = true,
-  },
-  {
-    "MunifTanjim/nui.nvim",
-    lazy = true,
+    keys = function()
+      return {
+        { "<leader>v", "", desc = "ai(Avante)", mode = { "n", "v" } },
+        { "<leader>va", "<cmd>AvanteAsk<CR>", desc = "Ask Avante" },
+        { "<leader>vc", "<cmd>AvanteChat<CR>", desc = "Chat with Avante" },
+        { "<leader>ve", "<cmd>AvanteEdit<CR>", desc = "Edit Avante" },
+        { "<leader>vf", "<cmd>AvanteFocus<CR>", desc = "Focus Avante" },
+        { "<leader>vh", "<cmd>AvanteHistory<CR>", desc = "Avante History" },
+        { "<leader>vm", "<cmd>AvanteModels<CR>", desc = "Select Avante Model" },
+        { "<leader>vn", "<cmd>AvanteChatNew<CR>", desc = "New Avante Chat" },
+        { "<leader>vr", "<cmd>AvanteRefresh<CR>", desc = "Refresh Avante" },
+        { "<leader>vs", "<cmd>AvanteStop<CR>", desc = "Stop Avante" },
+        { "<leader>vt", "<cmd>AvanteToggle<CR>", desc = "Toggle Avante" },
+      }
+    end,
   },
   {
     "ravitemer/mcphub.nvim", -- for mcphub server
     lazy = true,
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    lazy = true,
-    ft = function(_, ft)
-      -- add Avante filetype to the list of supported filetypes
-      vim.list_extend(ft, { "Avante" })
-      return ft
-    end,
-  },
-  {
-    -- support for image pasting
-    "HakonHarnes/img-clip.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    opts = {
-      -- recommended settings
-      default = {
-        embed_image_as_base64 = false,
-        prompt_for_file_name = false,
-        drag_and_drop = {
-          insert_mode = true,
-        },
-        -- required for Windows users
-        use_absolute_path = true,
-      },
-    },
   },
 }
