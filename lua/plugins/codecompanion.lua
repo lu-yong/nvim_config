@@ -39,60 +39,62 @@ return {
     },
     opts = {
       adapters = {
-        copilot = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              model = {
-                default = "claude-3.5-sonnet",
+        http = {
+          -- copilot = function()
+          --   return require("codecompanion.adapters").extend("copilot", {
+          --     schema = {
+          --       model = {
+          --         default = "claude-3.5-sonnet",
+          --       },
+          --     },
+          --   })
+          -- end,
+          qwen = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "qwen",
+              formatted_name = "Qwen",
+              env = {
+                url = "https://dashscope.aliyuncs.com/compatible-mode",
+                api_key = "DASHSCOPE_API_KEY",
               },
-            },
-          })
-        end,
-        qwen = function()
-          return require("codecompanion.adapters").extend("openai", {
-            name = "qwen",
-            formatted_name = "Qwen",
-            url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
-            env = {
-              api_key = "DASHSCOPE_API_KEY",
-            },
-            schema = {
-              model = {
-                default = "qwen3-coder-plus", -- define llm model to be used
+              schema = {
+                model = {
+                  default = "qwen3-coder-plus", -- define llm model to be used
+                },
               },
-            },
-          })
-        end,
-        openrouter = function()
-          return require("codecompanion.adapters").extend("openai", {
-            name = "openrouter",
-            formatted_name = "Openrouter",
-            url = "https://openrouter.ai/api/v1/chat/completions",
-            env = {
-              api_key = "OPENROUTER_API_KEY",
-            },
-            schema = {
-              model = {
-                default = "anthropic/claude-sonnet-4", -- define llm model to be used
+            })
+          end,
+          openrouter = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "openrouter",
+              formatted_name = "Openrouter",
+              env = {
+                url = "https://openrouter.ai/api",
+                api_key = "OPENROUTER_API_KEY",
               },
-            },
-          })
-        end,
-        silicon_flow = function()
-          return require("codecompanion.adapters").extend("openai", {
-            name = "silicon_flow",
-            formatted_name = "SiliconFlow",
-            url = "https://api.siliconflow.cn/v1/chat/completions",
-            env = {
-              api_key = "SILICONFLOW_API_KEY",
-            },
-            schema = {
-              model = {
-                default = "deepseek-ai/DeepSeek-R1", -- define llm model to be used
+              schema = {
+                model = {
+                  default = "anthropic/claude-sonnet-4.5", -- define llm model to be used
+                },
               },
-            },
-          })
-        end,
+            })
+          end,
+          silicon_flow = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "silicon_flow",
+              formatted_name = "SiliconFlow",
+              env = {
+                url = "https://api.siliconflow.cn",
+                api_key = "SILICONFLOW_API_KEY",
+              },
+              schema = {
+                model = {
+                  default = "deepseek-ai/DeepSeek-V3", -- define llm model to be used
+                },
+              },
+            })
+          end,
+        },
       },
       extensions = {
         mcphub = {
@@ -118,7 +120,7 @@ return {
           },
         },
       },
-      strategies = {
+      interactions = {
         chat = {
           adapter = "copilot",
           roles = {
@@ -183,7 +185,7 @@ return {
       display = {
         chat = {
           window = {
-            width = 0.35,
+            width = 0.4,
           },
         },
         diff = {
