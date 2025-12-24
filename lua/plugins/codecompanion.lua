@@ -40,15 +40,15 @@ return {
     opts = {
       adapters = {
         http = {
-          -- copilot = function()
-          --   return require("codecompanion.adapters").extend("copilot", {
-          --     schema = {
-          --       model = {
-          --         default = "claude-3.5-sonnet",
-          --       },
-          --     },
-          --   })
-          -- end,
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                model = {
+                  default = "claude-haiku-4.5",
+                },
+              },
+            })
+          end,
           qwen = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               name = "qwen",
