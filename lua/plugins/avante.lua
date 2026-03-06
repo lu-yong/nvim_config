@@ -5,15 +5,18 @@ return {
     lazy = true,
     version = false, -- -- Never set this value to "*"! Never!
     opts = {
-      -- provider = "copilot",
-      provider = "gemini",
+      -- this file can contain specific instructions for your project
+      instructions_file = "avante.md",
+      mode = "agentic",
+      provider = "copilot",
+      -- provider = "gemini",
       auto_suggestions_provider = "siliconflow",
       providers = {
         gemini = {
-          model = "gemini-2.5-flash",
+          model = "gemini-3-flash-preview",
         },
         copilot = {
-          model = "claude-3.5-sonnet",
+          model = "claude-haiku-4.5",
         },
         openrouter = {
           __inherited_from = "openai",
@@ -25,7 +28,7 @@ return {
           __inherited_from = "openai",
           api_key_name = "SILICONFLOW_API_KEY",
           endpoint = "https://api.siliconflow.cn/v1",
-          model = "deepseek-ai/DeepSeek-R1",
+          model = "deepseek-ai/DeepSeek-V3",
         },
       },
       behaviour = {
@@ -38,9 +41,19 @@ return {
         },
       },
       mappings = {
-        stop = "<leader>as",
+        ask = "<leader>va",
+        new_ask = "<leader>vn",
+        zen_mode = "<leader>vz",
+        edit = "<leader>ve",
+        refresh = "<leader>vr",
+        focus = "<leader>vf",
+        stop = "<leader>vs",
         toggle = {
-          suggestion = "<leader>aS",
+          default = "<leader>vt",
+          debug = "<leader>vd",
+          selection = "<leader>vC",
+          suggestion = "<leader>vS",
+          repomap = "<leader>vR",
         },
         jump = {
           next = "]j",
@@ -53,6 +66,12 @@ return {
           prev_prompt = "[[",
           next_prompt = "]]",
         },
+        files = {
+          add_current = "<leader>vc", -- Add current buffer to selected files
+          add_all_buffers = "<leader>vB", -- Add all buffer files to selected files
+        },
+        select_model = "<leader>v?", -- Select model command
+        select_history = "<leader>vh", -- Select history command
       },
       -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
       system_prompt = function()
@@ -75,7 +94,7 @@ return {
       },
     },
     keys = {
-      { "<leader>a", "", desc = "ai(Avante)", mode = { "n", "v" } },
+      { "<leader>v", "", desc = "ai(Avante)", mode = { "n", "v" } },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"

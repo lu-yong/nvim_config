@@ -1,7 +1,20 @@
 return {
+  -- for avante use blink.cmp
+  {
+    'Kaiser-Yang/blink-cmp-avante',
+  },
   {
     "saghen/blink.cmp",
     opts = {
+      sources = {
+        default = { "avante" },
+        providers = {
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
+          },
+        },
+      },
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
@@ -27,6 +40,9 @@ return {
             end
           end,
           "select_next",
+          function() -- sidekick next edit suggestion
+            return require("sidekick").nes_jump_or_apply()
+          end,
           "fallback",
         },
         ["<Esc>"] = { "hide", "fallback" },

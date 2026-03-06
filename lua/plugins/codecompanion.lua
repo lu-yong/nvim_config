@@ -97,18 +97,19 @@ return {
         },
       },
       extensions = {
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            make_tools = true,
-            show_server_tools_in_chat = true,
-            add_mcp_prefix_to_tool_names = false,
-            format_tool = nil,
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
-          },
-        },
+        -- 在https://github.com/ravitemer/mcphub.nvim/pull/279合并后下面的配置可以启用，暂时注释掉
+        -- mcphub = {
+        --   callback = "mcphub.extensions.codecompanion",
+        --   opts = {
+        --     make_tools = true,
+        --     show_server_tools_in_chat = true,
+        --     add_mcp_prefix_to_tool_names = false,
+        --     format_tool = nil,
+        --     make_vars = true,
+        --     make_slash_commands = true,
+        --     show_result_in_chat = true,
+        --   },
+        -- },
         history = {
           enabled = true,
           opts = {
