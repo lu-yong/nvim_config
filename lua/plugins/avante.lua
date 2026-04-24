@@ -72,6 +72,8 @@ return {
         },
         select_model = "<leader>v?", -- Select model command
         select_history = "<leader>vh", -- Select history command
+        select_acp_model = "<leader>vM", -- Select ACP agent model
+        select_acp_mode = "<leader>vm", -- Select ACP agent mode
       },
       -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
       system_prompt = function()
